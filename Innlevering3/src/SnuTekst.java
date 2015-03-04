@@ -4,8 +4,7 @@ import java.util.Scanner;
 
 public class SnuTekst {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public static void main(String[] args) 
 		Scanner input = new Scanner(System.in);
 		System.out.print("Skriv inn en tekst: ");
 		String s = input.nextLine();
