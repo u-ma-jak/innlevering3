@@ -2,16 +2,16 @@ import java.util.GregorianCalendar;
 
 public abstract class Kort {
 	private static int antallKort;
-	private String forNavn;
-	private String etterNavn;
+	private String fornavn;
+	private String etternavn;
 	private int pin;
 	private int kortNr;
 	private boolean sperretKort = false;
 
-	protected Kort(String forNavn, String etterNavn, int pin) {
+	protected Kort(String fornavn, String etternavn, int pin) {
 		GregorianCalendar dato = new GregorianCalendar();
-		this.forNavn = forNavn;
-		this.etterNavn = etterNavn;
+		this.fornavn = fornavn;
+		this.etternavn = etternavn;
 		this.pin = pin;
 		kortNr = ++antallKort;
 		sperretKort = false;
@@ -20,20 +20,20 @@ public abstract class Kort {
 
 	public abstract boolean sjekkPin(int pin);
 
-	public String getForNavn() {
-		return forNavn;
+	public String getFornavn() {
+		return fornavn;
 	}
 
-	public void setForNavn(String forNavn) {
-		this.forNavn = forNavn;
+	public void setFornavn(String fornavn) {
+		this.fornavn = fornavn;
 	}
 
-	public String getEtterNavn() {
-		return etterNavn;
+	public String getEtternavn() {
+		return etternavn;
 	}
 
-	public void setEtterNavn(String etterNavn) {
-		this.etterNavn = etterNavn;
+	public void setEtternavn(String etternavn) {
+		this.etternavn = etternavn;
 	}
 
 	public int getPIN() {
@@ -53,7 +53,7 @@ public abstract class Kort {
 	}
 
 	public String toString() {
-		return "Navn: " + etterNavn + " " + forNavn + " Pin: " + pin
+		return "Navn: " + etternavn + " " + fornavn + " Pin: " + pin
 				+ " Kortnr: " + kortNr + " Kortet er sperret: " + sperretKort;
 	}
 

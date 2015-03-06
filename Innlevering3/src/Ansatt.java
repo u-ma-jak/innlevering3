@@ -1,9 +1,15 @@
 import java.util.GregorianCalendar;
 
-public class Ansatt extends Kort {
+public class Ansatt extends Kort implements Fast {
 
-	public Ansatt(String forNavn, String etterNavn, int pin) {
-		super(forNavn, etterNavn, pin);
+	private GregorianCalendar ansatteTid;
+	private double timebetaling;
+
+	public Ansatt(String fornavn, String etternavn, int pin,
+			GregorianCalendar ansatteTid, double timesbetaling) {
+		super(fornavn, etternavn, pin);
+		this.timebetaling = timebetaling;
+		this.ansatteTid = ansatteTid;
 	}
 
 	@Override
@@ -19,11 +25,44 @@ public class Ansatt extends Kort {
 				return true;
 			else
 				return false;
+
 		if (!super.isSperret())
 			return true;
 
 		return false;
+	}
 
+	@Override
+	public String getNavn() {
+
+		return super.getFornavn() + " " + super.getEtternavn();
+	}
+
+	@Override
+	public void setNavn(String navn) {
+
+		String[] navnSplittet = navn.split("\\s");
+		super.setFornavn(navnSplittet[0]);
+		super.setEtternavn(navnSplittet[1]);
+
+	}
+
+	@Override
+	public double beregnKreditt() {
+
+		return FAKTOR * timebetaling;
+	}
+
+	@Override
+	public double beregnBonus() {
+		GregorianCalendar sjekkTid = new GregorianCalendar();
+
+		int årNå = sjekkTid.get(GregorianCalendar.YEAR);
+		int ansattÅr = ansatteTid.get(GregorianCalendar.YEAR);
+
+		int årAnsatt = årNå - ansattÅr;
+
+		return FAKTOR * årAnsatt;
 	}
 
 }
