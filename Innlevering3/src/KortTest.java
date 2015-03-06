@@ -21,13 +21,17 @@ public class KortTest {
 
 		}
 
-		Ansatt a = (Ansatt) k1;
+		Ansatt a = (Ansatt) k1.clone();
 
+		System.out.println("Samme referanse? " + (a == k1));
+		System.out.println("Er de like? " + a.compareTo(k1));
+		
 		System.out.println(a.beregnBonus());
 		System.out.println(a.beregnKreditt());
 		
 		a.setNavn("Unni Jakobsen");
 		System.out.println(a);
+		System.out.println(k1);
 	}
 
 }

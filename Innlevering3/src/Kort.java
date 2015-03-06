@@ -1,6 +1,7 @@
 import java.util.GregorianCalendar;
 
-public abstract class Kort {
+public abstract class Kort implements Comparable<Kort>, Cloneable {
+
 	private static int antallKort;
 	private String fornavn;
 	private String etternavn;
@@ -57,4 +58,35 @@ public abstract class Kort {
 				+ " Kortnr: " + kortNr + " Kortet er sperret: " + sperretKort;
 	}
 
+	@Override
+	public int compareTo(Kort o) {
+		if (o == null)
+			return -1;
+
+		if (this.getEtternavn().compareTo(o.getEtternavn()) < 0) {
+			return -1;
+		} else if (this.getEtternavn().compareTo(o.getEtternavn()) > 0) {
+			return 1;
+		} else if (this.getFornavn().compareTo(o.getFornavn()) < 0) {
+			return -1;
+		} else if (this.getFornavn().compareTo(o.getFornavn()) > 0) {
+			return 1;
+		} else
+			return 0;
+
+	}
+
+	@Override
+	public Object clone() {
+		try {
+			Kort clone = (Kort) super.clone();
+			clone.setFornavn(new String(this.getFornavn()));
+			clone.setEtternavn(new String(this.getEtternavn()));
+			return clone;
+
+		} catch (Exception e) {
+			System.out.println("Feil ved kloning");
+			return null;
+		}
+	}
 }
